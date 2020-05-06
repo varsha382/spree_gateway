@@ -99,6 +99,11 @@ module Spree
       options[:currency] = gateway_options[:currency]
       options[:application] = app_info
 
+      # Stripe Connect specific
+      options[:destination] = gateway_options[:destination] if gateway_options[:destination].present?
+      options[:application_fee] = gateway_options[:application_fee] if gateway_options[:application_fee].present?
+      options[:version] = gateway_options[:api_version] if gateway_options[:api_version].present?
+
       if customer = creditcard.gateway_customer_profile_id
         options[:customer] = customer
       end
